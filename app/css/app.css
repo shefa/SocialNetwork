@@ -148,7 +148,7 @@ div.wall-header {
 .wall-header>div>div {
     float: left;
     margin-left: 30px;
-    padding-top: 100px;
+    padding-top: 40px;
 }
 
 .wall-header>div>div>h3 {
@@ -182,7 +182,7 @@ div.wall-header {
 }
 
 .news-feed-comment a {
-    color: #191970;
+    color: #27763D;
 }
 
 .news-feed-comment>div>div>span {
