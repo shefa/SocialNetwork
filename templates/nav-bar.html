@@ -1,4 +1,4 @@
 <div ng-controller="navController">
-    <nav ng-include="'assets/partials/guest/nav-bar.html'" class="navbar-default navbar-side" role="navigation" ng-if="!isLogged"></nav>
-    <nav ng-include="'assets/partials/logged/nav-bar.html'" role="navigation" ng-if="isLogged"></nav>
+    <nav ng-include="'templates/guest/nav-bar.html'" class="navbar-default navbar-side" role="navigation" ng-if="!isLogged"></nav>
+    <nav ng-include="'templates/logged/nav-bar.html'" role="navigation" ng-if="isLogged"></nav>
 </div>
