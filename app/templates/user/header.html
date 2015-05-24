@@ -9,6 +9,12 @@
             </button>
             <a class="navbar-brand" href="#/">Headbook</a>
         </div>
+        <form id="search" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="searchTerm" ng-change="searchUsers(searchTerm)" placeholder="Search for people">
+                    <div users-search-results ng-if="searchResultsShown"></div>
+                </div>
+        </form>
 
         <div class="collapse navbar-collapse pull-right" id="menu">
             <ul class="nav navbar-nav">
@@ -22,12 +28,7 @@
                 <li ng-class="{ active: isActive('/profile')}"><a href="#/profile">Edit Profile</a></li>
                 <li ng-class="{ active: isActive('/logout')}"><a href="#/logout">Logout</a></li>
             </ul>
-            <form id="search" class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" ng-model="searchTerm" ng-change="searchUsers(searchTerm)" placeholder="Search users">
-                    <div users-search-results ng-if="searchResultsShown"></div>
-                </div>
-            </form>
+            
         </div>
     </div>
     <div friend-requests></div>
