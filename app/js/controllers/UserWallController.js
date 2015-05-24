@@ -43,13 +43,13 @@ socialNetworkApp.controller('UserWallController',
 
                     if($scope.userData.isFriend) {
                         $scope.buttonName = 'Friend';
-                        $scope.disabledButton = 'custdisabled';
+                        $scope.disabledButton = 'disabled';
                     } else if (
                         !$scope.userData.isFriend
                         && $scope.userData.hasPendingRequest
                         && $scope.user.username !== $routeParams.username) {
                         $scope.buttonName = 'Pending';
-                        $scope.disabledButton = 'custdisabled';
+                        $scope.disabledButton = 'disabled';
                     } else if(
                         !$scope.userData.isFriend
                         && !$scope.userData.hasPendingReques
