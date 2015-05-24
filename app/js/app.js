@@ -5,15 +5,15 @@ var socialNetworkApp = angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'partials/home.html',
+                templateUrl: 'templates/home.html',
                 controller: 'HomeController'
             })
             .when('/logout', {
-                templateUrl: 'partials/user/logout.html',
+                templateUrl: 'templates/user/logout.html',
                 controller: 'LogoutController'
             })
             .when('/profile', {
-                templateUrl: 'partials/user/edit-profile.html',
+                templateUrl: 'templates/user/edit-profile.html',
                 controller: 'EditProfileController',
                 resolve:{
                     isLogged: function($location, $sessionStorage, $localStorage){
@@ -24,7 +24,7 @@ var socialNetworkApp = angular
                 }
             })
             .when('/profile/password', {
-                templateUrl: 'partials/user/change-password.html',
+                templateUrl: 'templates/user/change-password.html',
                 controller: 'ChangePasswordController',
                 resolve:{
                     isLogged: function($location, $sessionStorage, $localStorage){
@@ -35,7 +35,7 @@ var socialNetworkApp = angular
                 }
             })
             .when('/users/:username/friends', {
-                templateUrl: 'partials/user/friends.html',
+                templateUrl: 'templates/user/friends.html',
                 controller: 'FriendsController',
                 resolve:{
                     isLogged: function($location, $sessionStorage, $localStorage){
@@ -46,7 +46,7 @@ var socialNetworkApp = angular
                 }
             })
             .when('/users/:username', {
-                templateUrl: 'partials/user/user-wall.html',
+                templateUrl: 'templates/user/user-wall.html',
                 controller: 'UserWallController',
                 resolve:{
                     isLogged: function($location, $sessionStorage, $localStorage){

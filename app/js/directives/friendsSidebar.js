@@ -2,7 +2,7 @@
 
 socialNetworkApp.directive('friendsSidebar', function () {
     return {
-        templateUrl: 'partials/directives/friends-sidebar.html',
+        templateUrl: 'templates/directives/friends-sidebar.html',
         restrict: 'A',
         controller: 'FriendsSidebarController'
     }
