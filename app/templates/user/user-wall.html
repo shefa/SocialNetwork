@@ -5,7 +5,7 @@
     <img src="" ng-src="{{userData.profileImageData}}" alt="{{userData.name}}" ng-if="userData.profileImageData">
     <img src="" ng-src="{{defaultProfileImageData}}" alt="{{user.name}}" ng-if="!userData.profileImageData">
     <div>
-        <button class="btn btn-warning btn-lg {{disabledButton}}" ng-click="sendFriendRequest(userData.username, 'wallOwner')">{{buttonName}}</button>
+        
         <h3>{{userData.name}}</h3>
     </div>
 </div>
