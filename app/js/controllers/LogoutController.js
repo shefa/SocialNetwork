@@ -5,23 +5,24 @@ socialNetworkApp.controller('LogoutController',
         $scope.logoutUser = logoutUser;
         $scope.logoutUser();
 
+        function backHome(time) {
+            $timeout(function () {
+                $location.path('/');
+            }, time);
+        }
+
         function logoutUser() {
             userData.logout()
                 .$promise
                 .then(function (data) {
                     credentials.deleteCredentials();
                     toaster.pop('success', 'Logout successful!');
-                    redirectToHome(2000);
+                    backHome(2000);
                 }, function (error) {
                     toaster.pop('error', 'Logout error!', error.data.message);
-                    redirectToHome(2000);
+                    backHome(2000);
                 })
         }
-
-        function redirectToHome(time) {
-            $timeout(function () {
-                $location.path('/');
-            }, time);
-        }
+       
     }
 ]);

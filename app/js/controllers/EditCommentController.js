@@ -30,7 +30,7 @@ socialNetworkApp.controller('EditCommentController',
                                     $scope.editCommentFormShown = false;
                                     $scope.editCommentFormCommentId = null;
                                     comment.commentContent = data.commentContent;
-                                    toaster.pop('error', 'Success!', 'Comment edited successfully!', defaultNotificationTimeout);
+                                    toaster.pop('error', 'Success!', 'Successfully edited comment!', defaultNotificationTimeout);
                                 }, function (error) {
                                     toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                                 });

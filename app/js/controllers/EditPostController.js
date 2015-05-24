@@ -28,7 +28,7 @@ socialNetworkApp.controller('EditPostController',
                             $scope.editPostFormShown = false;
                             $scope.editPostFormPostId = null;
                             post.postContent = data.content;
-                            toaster.pop('error', 'Success!', 'Post edited successfully!', defaultNotificationTimeout);
+                            toaster.pop('error', 'Success!', 'Successfully edited post!', defaultNotificationTimeout);
                         }, function (error) {
                             toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                         });

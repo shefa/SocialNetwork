@@ -48,7 +48,7 @@ socialNetworkApp.controller('UserWallController',
                         !$scope.userData.isFriend
                         && $scope.userData.hasPendingRequest
                         && $scope.user.username !== $routeParams.username) {
-                        $scope.buttonName = 'Pending request';
+                        $scope.buttonName = 'Pending';
                         $scope.disabledButton = 'disabled';
                     } else if(
                         !$scope.userData.isFriend
@@ -56,7 +56,7 @@ socialNetworkApp.controller('UserWallController',
                         && $scope.user.username !== $routeParams.username) {
                         $scope.buttonName = 'Invite';
                     } else {
-                        $scope.buttonName = 'My wall';
+                        $scope.buttonName = 'My Headbook';
                         $scope.disabledButton = 'disabled';
                     }
                 });
@@ -92,7 +92,7 @@ socialNetworkApp.controller('UserWallController',
                 .$promise
                 .then(function (data) {
                     $scope.posts.unshift(data);
-                    toaster.pop('success', 'Post successfully added!', data.message, defaultNotificationTimeout);
+                    toaster.pop('success', 'Post added!', data.message, defaultNotificationTimeout);
                 }, function (error) {
                     toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                 })
@@ -104,32 +104,13 @@ socialNetworkApp.controller('UserWallController',
                     postData.deletePost(postId)
                         .$promise
                         .then(function (data) {
-                            toaster.pop('success', 'Success!', 'Post deleted successfully.', defaultNotificationTimeout);
+                            toaster.pop('success', 'Success!', 'Post deleted.', defaultNotificationTimeout);
                             object.splice(index, 1);
                         }, function (error) {
                             toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                         });
                 }
             })
-        }
-
-        function unlikePost(postId) {
-            $scope.posts.forEach(function (post) {
-                if(post.id == postId) {
-                    if(post.author.isFriend || post.wallOwner.isFriend || $scope.user.username == post.author.username) {
-                        postData.unlikePost(postId)
-                            .$promise
-                            .then(function (data) {
-                                post.liked = false;
-                                post.likesCount--;
-                            }, function (error) {
-                                toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
-                            });
-                    } else {
-                        toaster.pop('error', 'Error!', 'You can`t unlike this post!', defaultNotificationTimeout);
-                    }
-                }
-            });
         }
 
         function likePost(postId) {
@@ -145,7 +126,26 @@ socialNetworkApp.controller('UserWallController',
                                 toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                             });
                     } else {
-                        toaster.pop('error', 'Error!', 'You can`t like this post!', defaultNotificationTimeout);
+                        toaster.pop('error', 'Error!', 'No permission!', defaultNotificationTimeout);
+                    }
+                }
+            });
+        }
+
+        function unlikePost(postId) {
+            $scope.posts.forEach(function (post) {
+                if(post.id == postId) {
+                    if(post.author.isFriend || post.wallOwner.isFriend || $scope.user.username == post.author.username) {
+                        postData.unlikePost(postId)
+                            .$promise
+                            .then(function (data) {
+                                post.liked = false;
+                                post.likesCount--;
+                            }, function (error) {
+                                toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
+                            });
+                    } else {
+                        toaster.pop('error', 'Error!', 'No permission!', defaultNotificationTimeout);
                     }
                 }
             });
@@ -175,29 +175,6 @@ socialNetworkApp.controller('UserWallController',
             });
         }
 
-        function unlikeComment(postId, commentId) {
-            $scope.posts.forEach(function (post) {
-                if(post.id == postId) {
-                    post.comments.forEach(function (comment) {
-                        if(comment.id == commentId) {
-                            if(post.author.isFriend || post.wallOwner.isFriend || $scope.user.username == post.author.username) {
-                                commentData.unlikeComment(postId, commentId)
-                                    .$promise
-                                    .then(function (data) {
-                                        comment.liked = false;
-                                        comment.likesCount--;
-                                    }, function (error) {
-                                        toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
-                                    });
-                            } else {
-                                toaster.pop('error', 'Error!', 'You can`t unlike this comment!', defaultNotificationTimeout);
-                            }
-                        }
-                    });
-                }
-            });
-        }
-
         function likeComment(postId, commentId) {
             $scope.posts.forEach(function (post) {
                 if(post.id == postId) {
@@ -213,7 +190,30 @@ socialNetworkApp.controller('UserWallController',
                                         toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
                                     });
                             } else {
-                                toaster.pop('error', 'Error!', 'You can`t like this comment!', defaultNotificationTimeout);
+                                toaster.pop('error', 'Error!', 'No permission!', defaultNotificationTimeout);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        function unlikeComment(postId, commentId) {
+            $scope.posts.forEach(function (post) {
+                if(post.id == postId) {
+                    post.comments.forEach(function (comment) {
+                        if(comment.id == commentId) {
+                            if(post.author.isFriend || post.wallOwner.isFriend || $scope.user.username == post.author.username) {
+                                commentData.unlikeComment(postId, commentId)
+                                    .$promise
+                                    .then(function (data) {
+                                        comment.liked = false;
+                                        comment.likesCount--;
+                                    }, function (error) {
+                                        toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
+                                    });
+                            } else {
+                                toaster.pop('error', 'Error!', 'No permission!', defaultNotificationTimeout);
                             }
                         }
                     });
@@ -231,7 +231,7 @@ socialNetworkApp.controller('UserWallController',
                                     .$promise
                                     .then(function (data) {
                                         post.totalCommentsCount--;
-                                        toaster.pop('error', 'Success!', 'Comment deleted successfully.', defaultNotificationTimeout);
+                                        toaster.pop('error', 'Success!', 'Comment deleted.', defaultNotificationTimeout);
                                         object.splice(index, 1);
                                     }, function (error) {
                                         toaster.pop('error', 'Error!', error.data.message, defaultNotificationTimeout);
@@ -249,7 +249,7 @@ socialNetworkApp.controller('UserWallController',
                     .$promise
                     .then(function (data) {
                         $scope.userData.hasPendingRequest = true;
-                        $scope.buttonName = 'Pending request';
+                        $scope.buttonName = 'Pending';
                         $scope.disabledButton = 'disabled';
                         toaster.pop('success', 'Success!', data.message, defaultNotificationTimeout);
                     }, function (error) {
@@ -263,7 +263,7 @@ socialNetworkApp.controller('UserWallController',
                         $scope.userHoverButtonType = 'disabled';
 
                         if(username.toLowerCase() == $scope.wallOwnerUsername.toLowerCase()) {
-                            $scope.buttonName = 'Pending request';
+                            $scope.buttonName = 'Pending';
                             $scope.disabledButton = 'disabled';
                         }
 

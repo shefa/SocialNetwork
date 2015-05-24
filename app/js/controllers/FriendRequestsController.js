@@ -16,7 +16,7 @@ socialNetworkApp.controller('FriendRequestsController',
             friendsData.approveFriendRequest(requestId)
                 .$promise
                 .then(function (data) {
-                    toaster.pop('success', 'Success!', data.message, defaultNotificationTimeout);
+                    toaster.pop('success', 'Successfully accepted!', data.message, defaultNotificationTimeout);
                     friendsData.getFriendRequests()
                         .$promise
                         .then(function (data) {
@@ -35,7 +35,7 @@ socialNetworkApp.controller('FriendRequestsController',
             friendsData.rejectFriendRequest(requestId)
                 .$promise
                 .then(function (data) {
-                    toaster.pop('success', 'Success!', data.message, defaultNotificationTimeout);
+                    toaster.pop('success', 'Rejected!', data.message, defaultNotificationTimeout);
                     friendsData.getFriendRequests()
                         .$promise
                         .then(function (data) {

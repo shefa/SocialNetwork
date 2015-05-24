@@ -6,6 +6,12 @@ socialNetworkApp.controller('FriendsController',
         $scope.user = credentials.getLoggedUser();
         $scope.defaultProfileImageData = defaultProfileImageData;
 
+        function backHome(time) {
+            $timeout(function () {
+                $location.path('/');
+            }, time);
+        }
+
         if($routeParams.username === $scope.user.username) {
             $scope.name = $scope.user.name;
             friendsData.getLoggedUserFriends()
@@ -21,8 +27,8 @@ socialNetworkApp.controller('FriendsController',
                 .$promise
                 .then(function (data) {
                     if(!data.isFriend) {
-                        redirectToHome(2000);
-                        toaster.pop('error', 'Error!', 'You can`t see non-friend friends.', defaultNotificationTimeout);
+                        backHome(2000);
+                        toaster.pop('error', 'Error!', 'No premission for this.', defaultNotificationTimeout);
                     }
 
                     $scope.name = data.name;
@@ -44,11 +50,5 @@ socialNetworkApp.controller('FriendsController',
                 result.push(array.slice(i, i + size));
             }
             return result;
-        }
-
-        function redirectToHome(time) {
-            $timeout(function () {
-                $location.path('/');
-            }, time);
         }
     }]);

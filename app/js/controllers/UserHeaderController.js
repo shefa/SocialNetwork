@@ -26,6 +26,12 @@ socialNetworkApp.controller('UserHeaderController',
                 $route.reload();
             });
 
+        function backHome(time) {
+            $timeout(function () {
+                $location.path('/');
+            }, time);
+        }
+
         function showRequestsDetail() {
             if($scope.requestsCount) {
                 $scope.requestDetailsShown = true;
@@ -47,12 +53,6 @@ socialNetworkApp.controller('UserHeaderController',
                 }, function (error) {
                     $scope.searchResultsShown = false;
                 });
-        }
-
-        function redirectToHome(time) {
-            $timeout(function () {
-                $location.path('/');
-            }, time);
         }
     }
     ]);

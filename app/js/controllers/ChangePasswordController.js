@@ -5,22 +5,23 @@ socialNetworkApp.controller('ChangePasswordController',
         var defaultNotificationTimeout = 2000;
         $scope.changePassword = changePassword;
 
+        function backHome(time) {
+            $timeout(function () {
+                $location.path('/');
+            }, time);
+        }
+
         function changePassword(password, changePasswordForm) {
             userData.changePassword(password)
                 .$promise
                 .then(function (data) {
                     $scope.changePasswordForm.$setPristine();
-                    toaster.pop('success', 'Password change successful!', data.message, defaultNotificationTimeout);
-                    redirectToHome(2000);
+                    toaster.pop('success', 'Successfully changed password!', data.message, defaultNotificationTimeout);
+                    backHome(5000);
                 }, function (error) {
-                    toaster.pop('error', 'Change password error!', error.data.message, defaultNotificationTimeout);
+                    toaster.pop('error', 'Error while changing password!', error.data.message, defaultNotificationTimeout);
                 })
         }
-
-        function redirectToHome(time) {
-            $timeout(function () {
-                $location.path('/');
-            }, time);
-        }
+        
     }
     ]);
