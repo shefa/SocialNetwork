@@ -144,12 +144,12 @@ div.wall-header {
 .wall-header>div>div {
     float: left;
     margin-left: 30px;
-    padding-top: 30px;
+    padding-top: 100px;
 }
 
 .wall-header>div>div>h3 {
     color: white;
-    font-size: 30px;
+    font-size: 60px;
 }
 
 .wall-header>div>div>button {
