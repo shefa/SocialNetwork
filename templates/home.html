@@ -1,4 +1,4 @@
-<div class="dialog-box" id="homePage">
-    <h1>Welcome, {{fullName}} ({{username}})</h1>
-    <p>Please use the navigation menu on the left.</p>
-</div>
+<div ng-include="'assets/partials/header.html'"></div>
+
+<div ng-include="'assets/partials/post/news-feed.html'" ng-if="isLogged"></div>
+<div ng-include="'assets/partials/guest/guest.html'" ng-if="!isLogged"></div>
