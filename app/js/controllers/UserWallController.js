@@ -57,7 +57,7 @@ socialNetworkApp.controller('UserWallController',
                         $scope.buttonName = 'Invite';
                     } else {
                         $scope.buttonName = 'My Headbook';
-                        $scope.disabledButton = 'disabled';
+                        $scope.disabledButton = 'custdisabled';
                     }
                 });
         }

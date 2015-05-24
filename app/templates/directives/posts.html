@@ -31,13 +31,11 @@
                     <span>{{post.postContent}}</span>
                 </div>
                 <div class="panel-footer">
-                    <div>Likes:
-                        <span class="badge">{{post.likesCount}}</span>
+                    <div>Likes: {{post.likesCount}}
                         <a href="">
                             <span ng-if="post.liked && (post.author.isFriend || post.wallOwner.isFriend || user.username == post.author.username)" ng-click="unlikePost(post.id)">Unlike</span>
                             <span ng-if="!post.liked && (post.author.isFriend || post.wallOwner.isFriend || user.username == post.author.username)" ng-click="likePost(post.id)">Like</span>
-                        </a>Comments:
-                        <span class="badge">{{post.totalCommentsCount}}</span>
+                        </a>Comments: {{post.totalCommentsCount}} 
                         <a href="" ng-click="toggleNewCommentForm(post.id)" ng-if="post.author.isFriend || post.wallOwner.isFriend || user.username == post.author.username">
                             <span ng-if="newCommentFormPostId == post.id">{{commentButtonName}}</span>
                             <span ng-if="newCommentFormPostId !== post.id">Comment</span>
@@ -84,8 +82,7 @@
                     <span>{{comment.commentContent}}</span>
                 </div>
                 <div class="panel-footer">
-                    <div>Likes:
-                        <span class="badge">{{comment.likesCount}}</span>
+                    <div>Likes: {{comment.likesCount}}
                         <a href="">
                             <span ng-if="comment.liked && (post.author.isFriend || post.wallOwner.isFriend || user.username == post.author.username)" ng-click="unlikeComment(post.id, comment.id)">Unlike</span>
                             <span ng-if="!comment.liked && (post.author.isFriend || post.wallOwner.isFriend || user.username == post.author.username)" ng-click="likeComment(post.id, comment.id)">Like</span>
