@@ -2,14 +2,14 @@
 
 socialNetworkApp.factory('credentials',
     ['$sessionStorage', '$localStorage', function ($sessionStorage, $localStorage) {
-        function saveTokenInLocalStorage(sessionToken, tokenType){
-            $localStorage.$default({
+        function saveTokenInSessionStorage(sessionToken, tokenType) {
+            $sessionStorage.$default({
                 'authorization': tokenType + ' ' + sessionToken
             });
         }
 
-        function saveTokenInSessionStorage(sessionToken, tokenType) {
-            $sessionStorage.$default({
+        function saveTokenInLocalStorage(sessionToken, tokenType){
+            $localStorage.$default({
                 'authorization': tokenType + ' ' + sessionToken
             });
         }

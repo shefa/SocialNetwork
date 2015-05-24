@@ -6,11 +6,6 @@ socialNetworkApp.factory('userData', ['$resource', 'baseUrl', 'credentials', fun
             .save(user);
     }
 
-    function registerUser(user) {
-        return $resource(baseUrl + 'users/register')
-            .save(user);
-    }
-
     function logoutUser() {
         var authorization = credentials.getAuthorization();
         return $resource(
@@ -23,6 +18,11 @@ socialNetworkApp.factory('userData', ['$resource', 'baseUrl', 'credentials', fun
                 }
             })
             .save();
+    }
+
+    function registerUser(user) {
+        return $resource(baseUrl + 'users/register')
+            .save(user);
     }
 
     function editUser(user) {

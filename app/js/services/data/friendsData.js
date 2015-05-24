@@ -30,20 +30,6 @@ socialNetworkApp.factory('friendsData', ['$resource', 'baseUrl', 'credentials', 
             .get();
     }
 
-    function getOtherUserFriendsPreview(username) {
-        var authorization = credentials.getAuthorization();
-        return $resource(
-            baseUrl + 'users/' + username + '/friends/preview',
-            null,
-            {
-                'get': {
-                    method: 'GET',
-                    headers: {'Authorization': authorization}
-                }
-            })
-            .get();
-    }
-
     function getOtherUserFriends(username) {
         var authorization = credentials.getAuthorization();
         return $resource(
@@ -53,6 +39,20 @@ socialNetworkApp.factory('friendsData', ['$resource', 'baseUrl', 'credentials', 
                 'get': {
                     method: 'GET',
                     isArray: true,
+                    headers: {'Authorization': authorization}
+                }
+            })
+            .get();
+    }
+
+    function getOtherUserFriendsPreview(username) {
+        var authorization = credentials.getAuthorization();
+        return $resource(
+            baseUrl + 'users/' + username + '/friends/preview',
+            null,
+            {
+                'get': {
+                    method: 'GET',
                     headers: {'Authorization': authorization}
                 }
             })
@@ -72,20 +72,6 @@ socialNetworkApp.factory('friendsData', ['$resource', 'baseUrl', 'credentials', 
                 }
             })
             .get();
-    }
-
-    function sendFriendRequest(name) {
-        var authorization = credentials.getAuthorization();
-        return $resource(
-            baseUrl + 'me/requests/' + name,
-            null,
-            {
-                'save': {
-                    method: 'POST',
-                    headers: {'Authorization': authorization}
-                }
-            })
-            .save();
     }
 
     function approveFriendRequest(requestId) {
@@ -114,6 +100,20 @@ socialNetworkApp.factory('friendsData', ['$resource', 'baseUrl', 'credentials', 
                 }
             })
             .update();
+    }
+
+    function sendFriendRequest(name) {
+        var authorization = credentials.getAuthorization();
+        return $resource(
+            baseUrl + 'me/requests/' + name,
+            null,
+            {
+                'save': {
+                    method: 'POST',
+                    headers: {'Authorization': authorization}
+                }
+            })
+            .save();
     }
 
     return {
